@@ -2,6 +2,7 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
 
+
 // Register function
 exports.register = (req, res) => {
     console.log("Request body:", req.body); 
@@ -25,6 +26,42 @@ exports.register = (req, res) => {
                 return res.status(500).send("Database error");
             }
             res.redirect('/home');
+        });
+    });
+};
+
+// Update password function
+exports.updatePassword = (req, res) => {
+    const { email, newPassword, confirmPassword } = req.body;
+
+    // Check if email, new password, and confirm password are provided
+    if (!email || !newPassword || !confirmPassword) {
+        return res.status(400).send('Please provide email, new password, and confirm password');
+    }
+
+    // Check if new password and confirm password match
+    if (newPassword !== confirmPassword) {
+        return res.status(400).send('Passwords do not match');
+    }
+
+    // Check if the email exists in the database
+    const sql = 'SELECT * FROM users WHERE email = ?';
+    db.query(sql, [email], (err, results) => {
+        if (err) return res.status(500).send('Database error');
+        if (results.length === 0) {
+            return res.status(400).send('Email not found');
+        }
+
+        // Hash the new password
+        bcrypt.hash(newPassword, 10, (err, hash) => {
+            if (err) return res.status(500).send('Error hashing password');
+
+            // Update the password in the database
+            const updateSql = 'UPDATE users SET password = ? WHERE email = ?';
+            db.query(updateSql, [hash, email], (err) => {
+                if (err) return res.status(500).send('Database error');
+                res.send('Password has been updated successfully');
+            });
         });
     });
 };

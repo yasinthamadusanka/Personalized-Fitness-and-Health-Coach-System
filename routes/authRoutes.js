@@ -9,5 +9,7 @@ router.post('/register', authController.register);
 // Login route
 router.post('/login', authController.login);
 
+// Route to update password
+router.post('/update-password', authController.updatePassword);
 
 module.exports = router;
