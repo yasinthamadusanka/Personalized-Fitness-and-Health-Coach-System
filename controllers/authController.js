@@ -77,7 +77,11 @@ exports.login = (req, res) => {
         bcrypt.compare(password, results[0].password, (err, isMatch) => {
             if (err) return res.status(500).send(err);
             if (!isMatch) return res.status(400).send('Incorrect password');
-            res.redirect('/home');
+            req.session.user = { id: results[0].id, email: results[0].email };
+            res.status(200).json({
+                message: 'Login successful',
+                user: { id: results[0].id, email: results[0].email }
+            });
         });
     });
 };

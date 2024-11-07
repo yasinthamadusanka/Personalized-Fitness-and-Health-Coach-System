@@ -5,10 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Welcome to the Home Page</h1>
     <p>This is the home page after a successful login.</p>
+    <button id="logoutButton">Logout</button>
 </body>
+<script>
+    // Logout functionality
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        window.location.href = '/logout';  // Redirect to logout route
+    });
+</script>
 </html>

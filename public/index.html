@@ -10,7 +10,7 @@
 <body>
     <section>
         <div class="login-box">
-            <form action="http://localhost:3000/login" method="POST" autocomplete="off">
+            <form id="loginForm" action="http://localhost:3000/auth/login" method="POST" autocomplete="off">
                 <h2>Login</h2>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
@@ -36,6 +36,42 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="scripts/script.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const contentType = response.headers.get("content-type");
+
+                if (response.ok && contentType && contentType.includes("application/json")) {
+                    const result = await response.json();
+                    // Store session data in localStorage
+                    localStorage.setItem('user', JSON.stringify(result.user));
+                    window.location.href = '/home'; // Redirect to home page
+                } else {
+                    const errorText = await response.text();
+                    console.error('Login failed:', errorText);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        </script>
         
 </body>
 </html>

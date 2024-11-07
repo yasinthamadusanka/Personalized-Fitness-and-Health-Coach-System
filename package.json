@@ -1,7 +1,6 @@
 {
   "name": "loginpage1",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,8 +13,10 @@
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
+    "express-session": "^1.18.1",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.4",
     "nodemailer": "^6.9.16"
-  }
+  },
+  "description": ""
 }
