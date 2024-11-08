@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+#logoutButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#logoutButton:hover {
+    background-color: #d32f2f;
+}
+
+/* Center the form on the page */
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.inside-home {
+    position: relative;
+    width: 100%;
+}
+
+/* Style the form */
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+#registerForm input,
+#registerForm button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#registerForm button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#registerForm button:hover {
+    background-color: #45a049;
+}

@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home page after a successful login.</p>
-    <button id="logoutButton">Logout</button>
+    <div class="home">
+        <div class="inside-home">
+            <button id="logoutButton">Logout</button>
+        </div>
+        <form id="registerForm">
+            <input type="text" id="username" placeholder="Username" required />
+            <input type="password" id="password" placeholder="Password" required />
+            <input type="number" id="height" placeholder="Height (cm)" required />
+            <input type="number" id="weight" placeholder="Weight (kg)" required />
+            <input type="text" id="goals" placeholder="Goals" required />
+            <button type="submit">Submit Details</button>
+        </form>
+    </div>
+    
 </body>
 <script>
     // Logout functionality
