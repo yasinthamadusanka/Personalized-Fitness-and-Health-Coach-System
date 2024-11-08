@@ -1,4 +1,3 @@
-<!-- public/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +14,7 @@
 <script>
     // Logout functionality
     document.getElementById('logoutButton').addEventListener('click', function() {
+        localStorage.clear();
         window.location.href = '/logout';  // Redirect to logout route
     });
 </script>

@@ -27,6 +27,7 @@ function isAuthenticated(req, res, next) {
 }
 
 app.get('/home', isAuthenticated, (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
