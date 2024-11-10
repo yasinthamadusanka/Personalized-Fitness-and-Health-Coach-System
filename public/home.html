@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <div class="banner">
-        <div class="navbar">
+    <div class="banner" >
+        <div class="navbar" id="home">
             <img src="images/logo2.png" class="logo">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Fitness Plan</a></li>
-                <li><a href="#">Nutrition Plan</a></li>
-                <li><a href="#">Payment</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#fitness-plan">Fitness Plan</a></li>
+                <li><a href="#nutrition-plan">Nutrition Plan</a></li>
+                <li><a href="#payment">Payment</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+                <li><a href="#" id="loginLink">Login</a></li>
+                <li><a href="#" id="registerLink">Register</a></li>
                 <li><button id="logoutButton">Logout</button></li>
             </ul>
         </div>
@@ -29,6 +29,7 @@
                 <button type="button"><span></span>Nutrition Plan</button>
             </div>
         </div>
+    </div>
         
         <!-- <div class="home">
             <h4>Create Your Personalized Fitness & Nutrition Plan</h4>
@@ -47,9 +48,32 @@
             <div id="result"></div>
         </div>
     </div> -->
+    <section id="fitness-plan">
+        <h2>Fitness Plan</h2>
+        <p>Discover custom workout plans tailored to your needs.</p>
+        <!-- Additional content for Fitness Plan -->
+    </section>
+
+    <section id="nutrition-plan">
+        <h2>Nutrition Plan</h2>
+        <p>Get personalized meal plans that fit your lifestyle.</p>
+        <!-- Additional content for Nutrition Plan -->
+    </section>
+
+    <section id="payment">
+        <h2>Payment</h2>
+        <p>Explore payment options and manage your subscriptions.</p>
+        <!-- Additional content for Payment -->
+    </section>
+
+    <section id="contact-us">
+        <h2>Contact Us</h2>
+        <p>Reach out to us with any questions or concerns.</p>
+        <!-- Contact form or information -->
+    </section>
     
 </body>
-<script>
+<!-- <script>
     document.getElementById('registerForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -88,6 +112,20 @@
     document.getElementById('logoutButton').addEventListener('click', function() {
         localStorage.clear();
         window.location.href = '/logout';  // Redirect to logout route
+    });
+</script> -->
+<script>
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        localStorage.clear();
+        window.location.href = '/logout';  // Redirect to logout route
+    });
+
+    document.getElementById('loginLink').addEventListener('click', function() {
+    window.location.href = 'index.html';  // Redirect to login page
+    });
+
+    document.getElementById('registerLink').addEventListener('click', function() {
+        window.location.href = 'register.html';  // Redirect to register page
     });
 </script>
 </html>
