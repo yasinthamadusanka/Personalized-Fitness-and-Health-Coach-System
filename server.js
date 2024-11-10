@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const session = require('express-session');
 const path = require('path');
+const db = require('../Personalized-Fitness-and-Health-Coach-System/config/db');
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -39,6 +40,34 @@ app.get('/logout', (req, res) => {
         }
         res.redirect('/');
     });
+});
+
+// API endpoint to handle form data and generate the plan
+app.post('/generate-plan', (req, res) => {
+    const { name, height, weight, goal } = req.body;
+
+    // Calculate BMI (Body Mass Index) to assist with plan generation
+    const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+
+    let plan = '';
+
+    // Generate plan based on health goal and BMI
+    if (goal === 'lose') {
+        plan = `To lose weight, we recommend a high-protein, low-carb diet, and regular cardio exercises. Your BMI is ${bmi}.`;
+    } else if (goal === 'gain') {
+        plan = `To gain muscle, focus on a balanced diet with a slight calorie surplus, combined with strength training exercises. Your BMI is ${bmi}.`;
+    } else {
+        plan = `To maintain your weight, follow a balanced diet and exercise routine to stay fit. Your BMI is ${bmi}.`;
+    }
+
+    // Optionally, store user data in MySQL for future reference
+    const query = 'INSERT INTO user (name, height, weight, goal, bmi) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [name, height, weight, goal, bmi], (err, result) => {
+        if (err) throw err;
+        console.log('User data inserted:', result);
+    });
+
+    res.json({ plan });
 });
 
 // Use auth routes for registration and login

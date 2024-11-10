@@ -7,27 +7,83 @@
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <div class="top-text">
-        <div class="inside-home">
-            <button id="logoutButton">Logout</button>
+    <div class="banner">
+        <div class="navbar">
+            <img src="images/logo2.png" class="logo">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Fitness Plan</a></li>
+                <li><a href="#">Nutrition Plan</a></li>
+                <li><a href="#">Payment</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+                <li><button id="logoutButton">Logout</button></li>
+            </ul>
         </div>
-        <h1>Welcome to Your Personalized Fitness Journey</h1>
-        <p>Track your goals, height, weight, and more to achieve your health and fitness objectives.</p>
-    </div>
-    
-    <div class="home">
-        <h5 style="font-size: 20px;">Fill out this form</h5>
-        <form id="registerForm">
-            <input type="text" id="username" placeholder="Username" required />
-            <input type="number" id="height" placeholder="Height (cm)" required />
-            <input type="number" id="weight" placeholder="Weight (kg)" required />
-            <input type="text" id="goals" placeholder="Goals" required />
-            <button type="submit">Submit Details</button>
-        </form>
-    </div>
+        <div class="content">
+            <h1>Welcome to Your Personalized Fitness Journey</h1>
+            <p>Track your goals, height, weight, and more to achieve your health and fitness objectives.</p>
+            <div>
+                <button type="button"><span></span>Fitness Plan</button>
+                <button type="button"><span></span>Nutrition Plan</button>
+            </div>
+        </div>
+        
+        <!-- <div class="home">
+            <h4>Create Your Personalized Fitness & Nutrition Plan</h4>
+            <form id="registerForm">
+                <input type="text" id="name" placeholder="Your name" required />
+                <input type="number" id="height" placeholder="Height (cm)" required />
+                <input type="number" id="weight" placeholder="Weight (kg)" required />
+                <label for="goal">Health Goal:</label>
+                <select id="goal" name="goal" required>
+                    <option value="lose">Lose Weight</option>
+                    <option value="gain">Gain Muscle</option>
+                    <option value="maintain">Maintain Weight</option>
+                </select>
+                <button type="submit">Genarate Plan</button>
+            </form>
+            <div id="result"></div>
+        </div>
+    </div> -->
     
 </body>
 <script>
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const height = document.getElementById('height').value;
+    const weight = document.getElementById('weight').value;
+    const goal = document.getElementById('goal').value;
+
+    const userData = {
+        name: name,
+        height: height,
+        weight: weight,
+        goal: goal
+    };
+
+    fetch('/generate-plan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerHTML = `
+            <h3>Your Personalized Plan:</h3>
+            <p>${data.plan}</p>
+        `;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    });
+
     // Logout functionality
     document.getElementById('logoutButton').addEventListener('click', function() {
         localStorage.clear();

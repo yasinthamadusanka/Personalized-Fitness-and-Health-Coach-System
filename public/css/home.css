@@ -3,45 +3,134 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Top text section */
-.top-text {
-    background-color: #eb7c15; /* Green background for the top section */
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
+.banner{
+    width: 100%;
+    height:100vh;
+    background-image: linear-gradient(
+        rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(bg5.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
-.top-text h1 {
+.navbar{
+    width: 85%;
+    margin: auto;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 150px;
+    cursor: pointer;
+    filter: brightness(0.6);
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+#logoutButton {
+    border: 1px solid #a24646;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 70px;
+    height: 30px;
+    padding: 5px;
+    background-color: #a24646;
+}
+
+#logoutButton:hover {
+    background-color: #d02727 ;
+    color: #fff;
+}
+
+/* Underline Effect on Navbar Links (excluding the button) */
+.navbar ul li:not(:has(#logoutButton))::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+/* Hover Effect for Links (excluding the button) */
+.navbar ul li:hover:not(:has(#logoutButton))::after {
+    width: 100%;
+}
+
+/* Top text section */
+.content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    text-align: center;
+}
+
+
+.content h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
 }
 
-.top-text p {
+.content p {
     font-size: 1.2em;
 }
 
-/* Position the logout button at the top right corner */
-.inside-home {
+button{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
     position: relative;
+    overflow: hidden;
+}
+
+span{
+    background: #009688;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+button:hover span{
     width: 100%;
 }
 
-#logoutButton {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    border: 1px solid #b31b48;
-    color: #b31b48;
+button:hover{
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
-#logoutButton:hover {
-    background-color: #b31b48 ;
-    color: #fff;
-}
+
 
 /* Center the form on the page */
 .home {
