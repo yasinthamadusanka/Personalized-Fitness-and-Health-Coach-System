@@ -70,6 +70,20 @@ app.post('/generate-plan', (req, res) => {
     res.json({ plan });
 });
 
+// Route to handle form submission
+app.post('/submit-form', (req, res) => {
+    const { name, email, message } = req.body;
+
+    const sql = 'INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)';
+    db.query(sql, [name, email, message], (err, result) => {
+        if (err) {
+            console.error('Failed to insert data into database:', err);
+            return res.status(500).json({ error: 'Failed to save data' });
+        }
+        res.status(200).json({ message: 'Data saved successfully' });
+    });
+});
+
 // Use auth routes for registration and login
 app.use('/auth', authRoutes);
 

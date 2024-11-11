@@ -67,11 +67,64 @@
     </section>
 
     <section id="contact-us">
-        <h2>Contact Us</h2>
-        <p>Reach out to us with any questions or concerns.</p>
-        <!-- Contact form or information -->
+        <div class="contact-content">
+            <h2>Contact Us</h2>
+            <p>Reach out to us with any questions or concerns. Our team is here to help, and we aim to respond within 24 hours. Please fill out the form below, and we’ll get back to you as soon as possible.</p>
+        </div>
+        <div class="container">
+            <div class="contactInfo">
+                <div class="box">
+                    <div class="icon"><b></b><ion-icon name="location-sharp"></ion-icon></div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>412355213 dgd asdadadasd,<br>Oaadsad,
+                        sadadad,<br>12313313</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><b></b><ion-icon name="call"></ion-icon></div>
+                    <div class="text">
+                        <h3>Phone</h3>
+                        <p>000-000-0000</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><b></b><ion-icon name="mail"></ion-icon></div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>temparyEmail@gmail.com</p>
+                    </div>
+                </div>
+                <h2 class="txt">Connect with us</h2>
+                <ul class="sci">
+                    <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
+                    <li><a href=""><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                    <li><a href=""><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+                </ul>
+            </div>
+            <div class="contactForm">
+                <form id="contactForm">
+                    <h2>Send Message</h2>
+                    <div class="inputBox">
+                        <input type="text" name="name" id="name" required="required">
+                        <span>Full Name</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" name="email" id="email" required="required">
+                        <span>Email</span>
+                    </div>
+                    <div class="inputBox">
+                        <textarea required="required" name="message" id="message"></textarea>
+                        <span>Type your message here...</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Send" id="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
-    
 </body>
 <!-- <script>
     document.getElementById('registerForm').addEventListener('submit', function (e) {
@@ -108,24 +161,46 @@
     });
     });
 
-    // Logout functionality
-    document.getElementById('logoutButton').addEventListener('click', function() {
-        localStorage.clear();
-        window.location.href = '/logout';  // Redirect to logout route
-    });
 </script> -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
     document.getElementById('logoutButton').addEventListener('click', function() {
         localStorage.clear();
-        window.location.href = '/logout';  // Redirect to logout route
+        window.location.href = '/logout';  
     });
 
     document.getElementById('loginLink').addEventListener('click', function() {
-    window.location.href = 'index.html';  // Redirect to login page
+    window.location.href = 'index.html';  
     });
 
     document.getElementById('registerLink').addEventListener('click', function() {
-        window.location.href = 'register.html';  // Redirect to register page
+        window.location.href = 'register.html';  
     });
+
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            // Send the form data to the server
+            const response = await fetch('/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                alert('Form submitted successfully!');
+                document.getElementById('contactForm').reset();
+            } else {
+                alert('Failed to submit the form. Please try again.');
+            }
+        });
 </script>
 </html>
