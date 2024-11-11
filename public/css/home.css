@@ -96,6 +96,12 @@ body {
     text-align: center;
 }
 
+.content button a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
 
 .content h1 {
     font-size: 2.5em;
