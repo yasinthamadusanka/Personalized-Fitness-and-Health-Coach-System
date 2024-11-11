@@ -282,8 +282,9 @@ section {
     color: #fff;
     margin-top: 50px;
     font-weight: 500;
-    border-left: 50px solid #01dbc2;
+    border-left: 25px solid #01dbc2;
     line-height: 1em;
+    padding-left: 10px;
 }
 
 .container .contactInfo .sci{
@@ -300,7 +301,7 @@ section {
 
 .container .contactInfo .sci li a{
     color: #fff;
-    font-size: 1.5em;
+    font-size: 2em;
     transition: 0.25s;
 }
 
