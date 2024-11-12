@@ -220,7 +220,7 @@ section {
 }
 
 .container .contactInfo{
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
 }
@@ -228,6 +228,7 @@ section {
 .container .contactInfo .box{
     position: relative;
     padding: 20px;
+    margin-top: 40px;
     display: flex;
     cursor: pointer;
 }
