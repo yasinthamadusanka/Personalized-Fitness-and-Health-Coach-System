@@ -4,10 +4,13 @@ const authRoutes = require('./routes/authRoutes');
 const session = require('express-session');
 const path = require('path');
 const db = require('../Personalized-Fitness-and-Health-Coach-System/config/db');
+const paypal = require('./paypal');
+require('dotenv').config();
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.json());
 
 app.use(session({
     secret: 'ad55123hv%56732611gvasdy682346',
@@ -81,6 +84,73 @@ app.post('/submit-form', (req, res) => {
             return res.status(500).json({ error: 'Failed to save data' });
         }
         res.status(200).json({ message: 'Data saved successfully' });
+    });
+});
+
+// Create a new order
+app.post('/create-order', (req, res) => {
+    const { amount } = req.body;
+    const create_payment_json = {
+        intent: 'sale',
+        payer: {
+            payment_method: 'paypal'
+        },
+        redirect_urls: {
+            return_url: 'http://localhost:3000/success',
+            cancel_url: 'http://localhost:3000/cancel'
+        },
+        transactions: [
+            {
+                amount: {
+                    currency: 'USD',
+                    total: amount,
+                },
+                description: 'Payment description'
+            },
+        ],
+    };
+
+    paypal.payment.create(create_payment_json, (error, payment) => {
+        if (error) {
+            console.error("Error creating payment:", error);
+            return res.status(500).json({ error: 'Error creating payment' });
+        } else {
+            // Respond with the approval link to redirect the user
+            const approvalUrl = payment.links.find(link => link.rel === 'approval_url').href;
+            res.json({ approvalUrl });
+        }
+    });
+});
+
+// Capture the order
+app.post('/capture-order', (req, res) => {
+    const { paymentId, payerId } = req.body;
+
+    const execute_payment_json = {
+        payer_id: payerId,
+    };
+
+    paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
+        if (error) {
+            console.error("Error capturing payment:", error);
+            return res.status(500).send(error);
+        } else {
+            const transaction = payment.transactions[0];
+            const transaction_id = transaction.related_resources[0].sale.id;
+            const amount = transaction.amount.total;
+            const status = transaction.related_resources[0].sale.state;
+
+            // Insert transaction record into MySQL
+            db.query(
+                'INSERT INTO transactions (transaction_id, amount, status) VALUES (?, ?, ?)',
+                [transaction_id, amount, status],
+                (err, result) => {
+                    if (err) throw err;
+                    console.log('Transaction saved to database.');
+                    res.json(payment);
+                }
+            );
+        }
     });
 });
 

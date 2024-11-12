@@ -175,11 +175,108 @@ section {
     background-color: yellow;
 }
 
-#payment{
-    width: 100%;
-    height: 100vh;
-    background-color: green;
+#payment {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    height: 120vh;
 }
+
+#paypal-button-container {
+    display: inline-block; /* Ensures button is centered within the parent */
+    margin: 40px auto;
+}
+
+#payment h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+#payment p {
+    margin: 0 auto 20px;
+    max-width: 600px;
+    color: #555;
+}
+
+.payment-plans {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.plan-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+}
+
+.plan-card.selected {
+    border: 3px solid #27ae60;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card img.plan-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.plan-card h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.plan-card p {
+    font-size: 1.5em;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.plan-card ul li {
+    font-size: 1em;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.plan-card ul li ion-icon {
+    color: #27ae60;
+    margin-right: 8px;
+}
+
+.subscribe-button {
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.subscribe-button:hover {
+    background-color: #1e8449;
+}
+
+
 
 #contact-us {
     position: relative;

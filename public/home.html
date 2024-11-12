@@ -61,9 +61,48 @@
     </section>
 
     <section id="payment">
-        <h2>Payment</h2>
-        <p>Explore payment options and manage your subscriptions.</p>
-        <!-- Additional content for Payment -->
+        <h1>Reserve Your Own Plan</h1>
+        <p>Choose a plan that suits your fitness journey. Manage your subscriptions easily and start achieving your goals today!</p>
+    
+        <div class="payment-plans">
+            <div class="plan-card" data-plan="basic">
+                <img src="images/basic.jpg" alt="Basic Plan" class="plan-image">
+                <h2>Basic Plan</h2>
+                <p>$10/month</p>
+                <ul>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Access to workout plans</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Basic meal suggestions</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Community support</li>
+                </ul>
+                <button class="subscribe-button">Choose Basic</button>
+            </div>
+    
+            <div class="plan-card" data-plan="premium">
+                <img src="images/premium.png" alt="Premium Plan" class="plan-image">
+                <h2>Premium Plan</h2>
+                <p>$25/month</p>
+                <ul>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Personalized workout plans</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Customized meal plans</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> One-on-one coaching</li>
+                </ul>
+                <button class="subscribe-button">Choose Premium</button>
+            </div>
+    
+            <div class="plan-card" data-plan="elite">
+                <img src="images/elite.png" alt="Elite Plan" class="plan-image">
+                <h2>Elite Plan</h2>
+                <p>$50/month</p>
+                <ul>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> All Premium features</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Priority support</li>
+                    <li><ion-icon name="checkmark-circle"></ion-icon> Exclusive events</li>
+                </ul>
+                <button class="subscribe-button">Choose Elite</button>
+            </div>
+        </div>
+    
+        <div id="paypal-button-container"></div>
     </section>
 
     <section id="contact-us">
@@ -178,9 +217,60 @@
     });
 
 </script> -->
+<script src="https://www.paypal.com/sdk/js?client-id=AZpkqBfMStMqDqzhi3GKuwd1GwcYgzDzH-K5M-ZmqwJXkfdjsC42JaqPAVUFHowPOIniqHYXqnzc89B8&currency=USD"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
+    // Define plan prices
+const planPrices = {
+    basic: 10,
+    premium: 25,
+    elite: 50
+};
+
+let selectedPlan = null;
+
+document.querySelectorAll('.plan-card').forEach(card => {
+    card.addEventListener('click', function () {
+        // Deselect all plans
+        document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+        
+        // Select this plan
+        this.classList.add('selected');
+        
+        // Update the selected plan
+        selectedPlan = this.getAttribute('data-plan');
+        
+        // Enable the PayPal button for selected plan
+        updatePaypalButton();
+    });
+});
+
+function updatePaypalButton() {
+    if (!selectedPlan) return;
+
+    // Clear previous PayPal button
+    document.getElementById('paypal-button-container').innerHTML = '';
+
+    // Create new PayPal button dynamically based on the selected plan
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: planPrices[selectedPlan].toString()
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                alert('Payment successful for ' + selectedPlan + ' plan!');
+            });
+        }
+    }).render('#paypal-button-container');
+}
+
     document.getElementById('logoutButton').addEventListener('click', function() {
         localStorage.clear();
         window.location.href = '/logout';  
