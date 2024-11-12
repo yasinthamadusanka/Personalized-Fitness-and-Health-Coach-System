@@ -166,36 +166,139 @@ section {
 #fitness-plan{
     width: 100%;
     height: 100vh;
-    background-color: red;
+    background-color: #333;
+    text-align: center;
 }
+
+#fitness-plan h2{
+    color: #fff;
+    padding-top: 50px;
+    font-size: 2.5em;
+}
+
+#fitness-plan p{
+    color: #fff;
+}
+
+/* Center the form on the page */
+.home {
+    display: flex;
+    align-items: flex-start;
+    height: calc(100vh - 100px); /* Adjust to avoid overlap with the top section */
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+.home h4{
+    text-align: left;
+    color: #fff;
+    padding-left: 100px;
+}
+
+/* Style the form */
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 500px;
+    height: 450px;
+    margin-top: 20px;
+    border-top: 2px solid #01dbc2;
+    border-left: 2px solid #01dbc2;
+    border-bottom: 2px solid #01dbc2;
+    padding: 20px;
+    padding-top: 20px;
+    border-radius: 25px 0px 0px 25px;
+}
+
+#registerForm label{
+    color: #fff;
+}
+
+#goal {
+    height: 40px;
+    font-size: 14px;
+    padding: 5px; 
+    border-radius: 5px;
+    color: #333;
+}
+
+
+#registerForm input,
+#registerForm button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+
+#registerForm button {
+    background-color: #01dbc2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 120px;
+}
+
+#registerForm button:hover {
+    background-color: #1c8a7d;
+}
+
+/* Style the image container */
+#image-container {
+    margin-top: 20px;
+    display: block;
+}
+
+#image-container img{
+    width: 500px;
+    height: 450px;
+}
+
+/* Result styling */
+#result {
+    margin-left: 20px;
+    color: #fff;
+}
+
 
 #nutrition-plan{
     width: 100%;
     height: 100vh;
-    background-color: yellow;
+    background-color: #222;
+    text-align: center;
+}
+
+#nutrition-plan h2{
+    color: #fff;
+    padding-top: 50px;
+    font-size: 2.5em;
+}
+
+#nutrition-plan p{
+    color: #fff;
 }
 
 #payment {
     text-align: center;
     padding: 50px 20px;
-    background-color: #f9f9f9;
+    background-color: #333;
     height: 120vh;
 }
 
 #paypal-button-container {
-    display: inline-block; /* Ensures button is centered within the parent */
+    display: inline-block; 
     margin: 40px auto;
 }
 
 #payment h1 {
     font-size: 2.5em;
-    color: #333;
+    color: #fff;
 }
 
 #payment p {
     margin: 0 auto 20px;
     max-width: 600px;
-    color: #555;
+    color: #fff;
 }
 
 .payment-plans {
@@ -206,7 +309,7 @@ section {
 }
 
 .plan-card {
-    background-color: #fff;
+    background-color: #222;
     border-radius: 10px;
     padding: 20px;
     width: 280px;
@@ -219,7 +322,7 @@ section {
 }
 
 .plan-card.selected {
-    border: 3px solid #27ae60;
+    border: 3px solid #01dbc2;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
 }
 
@@ -233,13 +336,13 @@ section {
 
 .plan-card h2 {
     font-size: 1.8em;
-    color: #333;
+    color: #fff;
     margin-bottom: 10px;
 }
 
 .plan-card p {
     font-size: 1.5em;
-    color: #27ae60;
+    color: #01dbc2;
     margin-bottom: 15px;
 }
 
@@ -251,18 +354,18 @@ section {
 
 .plan-card ul li {
     font-size: 1em;
-    color: #555;
+    color: #fff;
     display: flex;
     align-items: center;
 }
 
 .plan-card ul li ion-icon {
-    color: #27ae60;
+    color: #01dbc2;
     margin-right: 8px;
 }
 
 .subscribe-button {
-    background-color: #27ae60;
+    background-color: #01dbc2;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -273,7 +376,7 @@ section {
 }
 
 .subscribe-button:hover {
-    background-color: #1e8449;
+    background-color: #1c8a7d;
 }
 
 
@@ -543,7 +646,7 @@ section {
 footer{
     position: relative;
     width: 100%;
-    background-color: #2f0a36;
+    background-color: #333;
     min-height: 100px;
     padding: 20px 50px;
     display: flex;
@@ -602,38 +705,3 @@ footer p{
 
 
 
-/* Center the form on the page */
-.home {
-    display: flex;
-    align-items: left;
-    /* justify-content: center;  */
-    height: calc(100vh - 100px); /* Adjust to avoid overlap with the top section */
-    flex-direction: column;
-    margin-left: 100px;
-}
-
-/* Style the form */
-#registerForm {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 300px;
-}
-
-#registerForm input,
-#registerForm button {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-#registerForm button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#registerForm button:hover {
-    background-color: #45a049;
-}

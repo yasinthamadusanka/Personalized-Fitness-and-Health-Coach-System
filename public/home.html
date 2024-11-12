@@ -9,7 +9,7 @@
 <body>
     <div class="banner" >
         <div class="navbar" id="home">
-            <img src="images/logo2.png" class="logo">
+            <img src="images/logo.png" class="logo">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#fitness-plan">Fitness Plan</a></li>
@@ -31,33 +31,52 @@
         </div>
     </div>
         
-        <!-- <div class="home">
-            <h4>Create Your Personalized Fitness & Nutrition Plan</h4>
-            <form id="registerForm">
-                <input type="text" id="name" placeholder="Your name" required />
-                <input type="number" id="height" placeholder="Height (cm)" required />
-                <input type="number" id="weight" placeholder="Weight (kg)" required />
-                <label for="goal">Health Goal:</label>
-                <select id="goal" name="goal" required>
-                    <option value="lose">Lose Weight</option>
-                    <option value="gain">Gain Muscle</option>
-                    <option value="maintain">Maintain Weight</option>
-                </select>
-                <button type="submit">Genarate Plan</button>
-            </form>
-            <div id="result"></div>
-        </div>
-    </div> -->
     <section id="fitness-plan">
         <h2>Fitness Plan</h2>
-        <p>Discover custom workout plans tailored to your needs.</p>
-        <!-- Additional content for Fitness Plan -->
+        <p>Discover custom workout plans tailored to your needs. Whether you're looking to build strength, improve endurance, lose weight, or enhance flexibility,<br>we offer a variety of personalized fitness plans that align with your goals.</p>
+        <div class="home">
+                <form id="registerForm">
+                    <h4>Create Your Personalized Fitness Plan</h4>
+                    <input type="text" id="name" placeholder="Your name" required />
+                    <input type="number" id="height" placeholder="Height (cm)" required />
+                    <input type="number" id="weight" placeholder="Weight (kg)" required />
+                    <label for="goal">Health Goal:</label>
+                    <select id="goal" name="goal" required>
+                        <option value="lose">Lose Weight</option>
+                        <option value="gain">Gain Muscle</option>
+                        <option value="maintain">Maintain Weight</option>
+                    </select>
+                    <button type="submit">Genarate Plan</button>
+                </form>
+                <div id="image-container">
+                    <img src="images/fitness-image.jpg" alt="Placeholder Image" id="fitnessImage" />
+                </div>
+                <div id="result"></div>
+            </div>
     </section>
 
     <section id="nutrition-plan">
         <h2>Nutrition Plan</h2>
-        <p>Get personalized meal plans that fit your lifestyle.</p>
-        <!-- Additional content for Nutrition Plan -->
+        <p>Get personalized meal plans that fit your lifestyle. We consider your dietary preferences, restrictions, and activity level to create a balanced and sustainable eating plan.<br/>With delicious recipes, portion control tips, and expert guidance, you’ll feel energized, satisfied.</p>
+        <div class="home">
+                <form id="registerForm">
+                    <h4>Create Your Personalized Nutrition Plan</h4>
+                    <input type="text" id="name" placeholder="Your name" required />
+                    <input type="number" id="height" placeholder="Height (cm)" required />
+                    <input type="number" id="weight" placeholder="Weight (kg)" required />
+                    <label for="goal">Health Goal:</label>
+                    <select id="goal" name="goal" required>
+                        <option value="lose">Lose Weight</option>
+                        <option value="gain">Gain Muscle</option>
+                        <option value="maintain">Maintain Weight</option>
+                    </select>
+                    <button type="submit">Genarate Plan</button>
+                </form>
+                <div id="image-container">
+                    <img src="images/nutrition-plan3.png" alt="Placeholder Image" id="fitnessImage" />
+                </div>
+                <div id="result"></div>
+            </div>
     </section>
 
     <section id="payment">
@@ -66,7 +85,7 @@
     
         <div class="payment-plans">
             <div class="plan-card" data-plan="basic">
-                <img src="images/basic.jpg" alt="Basic Plan" class="plan-image">
+                <img src="images/basic.png" alt="Basic Plan" class="plan-image">
                 <h2>Basic Plan</h2>
                 <p>$10/month</p>
                 <ul>
@@ -134,13 +153,6 @@
                         <p>fitnessAndHealth@gmail.com</p>
                     </div>
                 </div>
-                <!-- <h2 class="txt">Connect with us</h2>
-                <ul class="sci">
-                    <li><a href=""><ion-icon name="logo-facebook"></ion-icon></a></li>
-                    <li><a href=""><ion-icon name="logo-instagram"></ion-icon></a></li>
-                    <li><a href=""><ion-icon name="logo-linkedin"></ion-icon></a></li>
-                    <li><a href=""><ion-icon name="logo-whatsapp"></ion-icon></a></li>
-                </ul> -->
             </div>
             <div class="contactForm">
                 <form id="contactForm">
@@ -181,95 +193,60 @@
         <p>@2024 Persionalized Fitness and Health Coach System | All Rights Reserved</p>
     </footer>
 </body>
-<!-- <script>
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
-    e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const height = document.getElementById('height').value;
-    const weight = document.getElementById('weight').value;
-    const goal = document.getElementById('goal').value;
-
-    const userData = {
-        name: name,
-        height: height,
-        weight: weight,
-        goal: goal
-    };
-
-    fetch('/generate-plan', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('result').innerHTML = `
-            <h3>Your Personalized Plan:</h3>
-            <p>${data.plan}</p>
-        `;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-    });
-
-</script> -->
 <script src="https://www.paypal.com/sdk/js?client-id=AZpkqBfMStMqDqzhi3GKuwd1GwcYgzDzH-K5M-ZmqwJXkfdjsC42JaqPAVUFHowPOIniqHYXqnzc89B8&currency=USD"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 <script>
-    // Define plan prices
-const planPrices = {
-    basic: 10,
-    premium: 25,
-    elite: 50
-};
+    const planPrices = {
+        basic: 10,
+        premium: 25,
+        elite: 50
+    };
 
-let selectedPlan = null;
+    let selectedPlan = null;
 
-document.querySelectorAll('.plan-card').forEach(card => {
-    card.addEventListener('click', function () {
-        // Deselect all plans
-        document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
-        
-        // Select this plan
-        this.classList.add('selected');
-        
-        // Update the selected plan
-        selectedPlan = this.getAttribute('data-plan');
-        
-        // Enable the PayPal button for selected plan
-        updatePaypalButton();
+    document.querySelectorAll('.plan-card').forEach(card => {
+        card.addEventListener('click', function () {
+            // Deselect all plans
+            document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+            
+            // Select this plan
+            this.classList.add('selected');
+            
+            // Update the selected plan
+            selectedPlan = this.getAttribute('data-plan');
+            
+            // Enable the PayPal button for selected plan
+            updatePaypalButton();
+        });
     });
-});
 
-function updatePaypalButton() {
-    if (!selectedPlan) return;
+    function updatePaypalButton() {
+        if (!selectedPlan) return;
 
-    // Clear previous PayPal button
-    document.getElementById('paypal-button-container').innerHTML = '';
+        // Clear previous PayPal button
+        document.getElementById('paypal-button-container').innerHTML = '';
 
-    // Create new PayPal button dynamically based on the selected plan
-    paypal.Buttons({
-        createOrder: function (data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: planPrices[selectedPlan].toString()
-                    }
-                }]
-            });
-        },
-        onApprove: function (data, actions) {
-            return actions.order.capture().then(function (details) {
-                alert('Payment successful for ' + selectedPlan + ' plan!');
-            });
-        }
-    }).render('#paypal-button-container');
-}
+        // Create new PayPal button dynamically based on the selected plan
+        paypal.Buttons({
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: planPrices[selectedPlan].toString()
+                        }
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    alert('Payment successful for ' + selectedPlan + ' plan!');
+                });
+            }
+        }).render('#paypal-button-container');
+    }
 
     document.getElementById('logoutButton').addEventListener('click', function() {
         localStorage.clear();
@@ -308,5 +285,39 @@ function updatePaypalButton() {
                 alert('Failed to submit the form. Please try again.');
             }
         });
+
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const height = document.getElementById('height').value;
+    const weight = document.getElementById('weight').value;
+    const goal = document.getElementById('goal').value;
+
+    const userData = {
+        name: name,
+        height: height,
+        weight: weight,
+        goal: goal
+    };
+
+    fetch('/generate-plan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerHTML = `
+            <h3>Your Personalized Plan:</h3>
+            <p>${data.plan}</p>
+        `;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    });
 </script>
 </html>
