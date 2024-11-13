@@ -108,10 +108,13 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 
-input:-webkit-autofill {
-    -webkit-text-fill-color: #000 !important; /* Text color in autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+    -webkit-text-fill-color: #fff; /* Text color in autofill */
     border-radius: 5px 5px 0 0px;
     -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out;
 }
 
 .input-box input:focus~label,
