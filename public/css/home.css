@@ -173,12 +173,19 @@ section {
 
 #fitness-plan h2{
     color: #fff;
-    padding-top: 50px;
+    padding-top: 40px;
     font-size: 2.5em;
+    margin-bottom: 20px;
 }
 
 #fitness-plan p{
-    color: #fff;
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1.6;
 }
 
 /* Center the form on the page */
@@ -310,7 +317,7 @@ section {
 #fitnessResult p, #nutritionResult p {
     color: #fff;
     white-space: pre-wrap; 
-    text-align: left; /* Aligns text to the left */
+    text-align: left; 
     margin: 5px 0; 
 }
 
@@ -338,40 +345,56 @@ em{
 
 #nutrition-plan h2{
     color: #fff;
-    padding-top: 50px;
+    padding-top: 40px;
     font-size: 2.5em;
+    margin-bottom: 20px;
 }
 
 #nutrition-plan p{
-    color: #fff;
+    font-size: 1.2rem;
+    color: #777;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
+    line-height: 1.6;
 }
 
 #team {
-    text-align: center;
     padding: 50px 20px;
-    background-color: #222;
-    height: 70vh;
+    
+    
 }
 
-
 .team-section { 
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #f9f9f9;
+    background-color: #222;
+    
 }
 
 .team-section h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: #fff;
+    text-align: center;
+}
+
+.team-section .team-intro {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1.6;
 }
 
 .team-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     flex-wrap: wrap;
+    margin-top: 80px;
 }
 
 .team-member {
@@ -468,12 +491,14 @@ em{
     border-radius: 10px;
     padding: 20px;
     width: 280px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(41, 137, 148, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .plan-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
 }
 
 .plan-card.selected {
