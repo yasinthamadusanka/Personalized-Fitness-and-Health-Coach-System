@@ -291,7 +291,7 @@ section {
     border-radius: 0px 25px 25px 0px;
     background-color: #333;
     background-image: linear-gradient(
-        rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(fitness_image2.jpg);
+        rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(nutrition_image.jpg);
     background-size: cover;
     background-position: center;
 }
