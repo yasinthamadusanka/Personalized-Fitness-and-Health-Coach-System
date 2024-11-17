@@ -62,14 +62,6 @@ app.post('/generate-plan', (req, res) => {
         if (result.length > 0) {
             const randomPlan = result[0];
 
-            // Optionally, store user data in the database
-            const userQuery = 'INSERT INTO user (name, height, weight, goal, bmi) VALUES (?, ?, ?, ?, ?)';
-            db.query(userQuery, [name, height, weight, goal, bmi], (err, insertResult) => {
-                if (err) {
-                    console.error('Error storing user data:', err);
-                }
-            });
-
             // Format exercises for better alignment
             const exercisesArray = randomPlan.exercises.split(',').map((exercise) => exercise.trim());
             const cleanedExercises = exercisesArray
@@ -99,6 +91,45 @@ app.post('/generate-plan', (req, res) => {
         }
     });
 });
+
+app.post('/generate-plan2', (req, res) => {
+    const { name, height, weight, goal } = req.body;
+
+    // Calculate BMI (Body Mass Index)
+    const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+
+    // Fetch a random nutrition plan from the database
+    const query = 'SELECT * FROM nutrition_plans ORDER BY RAND() LIMIT 1';
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error fetching nutrition plan:', err);
+            return res.status(500).json({ error: 'Failed to fetch nutrition plan' });
+        }
+
+        if (result.length > 0) {
+            const randomPlan = result[0];
+
+            // Format plan details for better alignment
+            const planDetailsArray = randomPlan.details.split('\n').map((detail, index) => `${index + 1}. ${detail.trim()}`);
+
+            // Send the random nutrition plan as the response
+            res.json({
+                plan: `
+                    <p><strong>Name:</strong> ${randomPlan.name}</p>
+                    <p><strong>Goal:</strong> ${randomPlan.goal}</p>
+                    <p><strong>Frequency:</strong> ${randomPlan.frequency}</p>
+                    <p><strong>Details:</strong></p>
+                    <pre>${planDetailsArray.join('\n')}</pre>
+                    <p><strong>Your BMI:</strong> ${bmi}</p>
+                    <p><strong>Note:</strong> This plan aligns with your health goal: <em>${goal}</em>.</p>
+                `,
+            });
+        } else {
+            res.json({ plan: 'No nutrition plans available at the moment. Please try again later.' });
+        }
+    });
+});
+
 
 
 // Route to handle form submission

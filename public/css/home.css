@@ -181,7 +181,7 @@ section {
 }
 
 /* Center the form on the page */
-.home {
+.home, .home2 {
     display: flex;
     align-items: flex-start;
     height: calc(100vh - 100px); /* Adjust to avoid overlap with the top section */
@@ -189,14 +189,14 @@ section {
     margin-top: 20px;
 }
 
-.home h4{
+.home h4, .home2 h4 {
     text-align: left;
     color: #fff;
     padding-left: 100px;
 }
 
 /* Style the form */
-#registerForm {
+#registerForm, #registerForm2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -211,11 +211,11 @@ section {
     border-radius: 25px 0px 0px 25px;
 }
 
-#registerForm label{
+#registerForm label, #registerForm2 label{
     color: #fff;
 }
 
-#goal {
+#goal, #goal2 {
     height: 40px;
     font-size: 14px;
     padding: 5px; 
@@ -225,13 +225,15 @@ section {
 
 
 #registerForm input,
-#registerForm button {
+#registerForm button,
+#registerForm2 input,
+#registerForm2 button {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #fff;
 }
 
-#registerForm button {
+#registerForm button,#registerForm2 button {
     background-color: #01dbc2;
     color: white;
     border: none;
@@ -239,27 +241,22 @@ section {
     margin-left: 120px;
 }
 
-#registerForm button:hover {
+#registerForm button:hover, #registerForm2 button:hover {
     background-color: #1c8a7d;
 }
 
 /* Style the image container */
-#image-container {
+#image-container,  #image-container2{
     margin-top: 20px;
     display: block;
 }
 
-#image-container img{
+#image-container img, #image-container2 img{
     width: 500px;
     height: 450px;
     transition: opacity 0.5s ease;
 }
 
-/* Result styling */
-#result {
-    margin-left: 20px;
-    color: #fff;
-}
 
 #fitnessResult {
     opacity: 0;
@@ -278,23 +275,38 @@ section {
         rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(fitness_image2.jpg);
     background-size: cover;
     background-position: center;
-
 }
 
-#image-container img.hidden {
+#nutritionResult {
     opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 500px;
+    height: 450px;
+    border: 2px solid #01dbc2;
+    padding: 20px;
+    border-radius: 0px 25px 25px 0px;
+    background-color: #333;
+    background-image: linear-gradient(
+        rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(fitness_image2.jpg);
+    background-size: cover;
+    background-position: center;
 }
-#fitnessResult.visible {
+
+#fitnessResult.visible, #nutritionResult.visible {
     opacity: 1;
 }
 
-#fitnessResult h3 {
+#fitnessResult h3, #nutritionResult h3 {
     color: #01dbc2; 
     align-self: center;
     margin-bottom: 10px;
 }
 
-#fitnessResult p {
+#fitnessResult p, #nutritionResult p {
     color: #fff;
     white-space: pre-wrap; 
     text-align: left; /* Aligns text to the left */
@@ -308,7 +320,7 @@ em{
     color: #fff;
 }
 
-#fitnessResult pre {
+#fitnessResult pre, #nutritionResult pre {
     color: #fff;
     padding: 10px;
     border-radius: 5px;
@@ -331,7 +343,7 @@ em{
 
 #nutrition-plan p{
     color: #fff;
-    text-align: left;
+    text-align: center;
 }
 
 #payment {

@@ -57,24 +57,23 @@
     <section id="nutrition-plan">
         <h2>Nutrition Plan</h2>
         <p>Get personalized meal plans that fit your lifestyle. We consider your dietary preferences, restrictions, and activity level to create a balanced and sustainable eating plan.<br/>With delicious recipes, portion control tips, and expert guidance, you’ll feel energized, satisfied.</p>
-        <div class="home">
-                <form id="registerForm">
+        <div class="home2">
+                <form id="registerForm2">
                     <h4>Create Your Personalized Nutrition Plan</h4>
-                    <input type="text" id="name" autocomplete="name" placeholder="Your name" required />
-                    <input type="number" id="height" autocomplete="height" placeholder="Height (cm)" required />
-                    <input type="number" id="weight" autocomplete="weight" placeholder="Weight (kg)" required />
+                    <input type="text" id="name2" placeholder="Your name" required />
+                    <input type="number" id="height2" placeholder="Height (cm)" required />
+                    <input type="number" id="weight2" placeholder="Weight (kg)" required />
                     <label for="goal">Health Goal:</label>
-                    <select id="goal" name="goal" required>
+                    <select id="goal2" name="goal" required>
                         <option value="lose">Lose Weight</option>
                         <option value="gain">Gain Muscle</option>
                         <option value="maintain">Maintain Weight</option>
                     </select>
                     <button type="submit">Genarate Plan</button>
                 </form>
-                <div id="image-container">
-                    <img src="images/nutrition-plan3.png" alt="Placeholder Image" id="fitnessImage" />
+                <div id="image-container2">
+                    <img src="images/nutrition-plan3.png" alt="Placeholder Image" id="nutritionImage" />
                 </div>
-                <div id="result"></div>
             </div>
     </section>
 
@@ -208,16 +207,12 @@
 
     document.querySelectorAll('.plan-card').forEach(card => {
         card.addEventListener('click', function () {
-            // Deselect all plans
             document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
             
-            // Select this plan
             this.classList.add('selected');
             
-            // Update the selected plan
             selectedPlan = this.getAttribute('data-plan');
             
-            // Enable the PayPal button for selected plan
             updatePaypalButton();
         });
     });
@@ -225,10 +220,8 @@
     function updatePaypalButton() {
         if (!selectedPlan) return;
 
-        // Clear previous PayPal button
         document.getElementById('paypal-button-container').innerHTML = '';
 
-        // Create new PayPal button dynamically based on the selected plan
         paypal.Buttons({
             createOrder: function (data, actions) {
                 return actions.order.create({
@@ -268,7 +261,6 @@
                 message: document.getElementById('message').value
             };
 
-            // Send the form data to the server
             const response = await fetch('/submit-form', {
                 method: 'POST',
                 headers: {
@@ -309,16 +301,10 @@
         })
         .then(response => response.json())
         .then(data => {
-            // Select the image container and the image
             const imageContainer = document.getElementById('image-container');
             const fitnessImage = document.getElementById('fitnessImage');
 
-            // Add fade-out effect to the image
-            fitnessImage.classList.add('hidden');
-
-            // Replace the image with the result after the transition
             setTimeout(() => {
-                // Replace `?` and add new lines
             const formattedPlan = data.plan.replace(/\?/g, '').replace(/,/g, '<br>');
 
                 imageContainer.innerHTML = `
@@ -327,7 +313,50 @@
                         ${formattedPlan}
                     </div>
                 `;
-            }, 500); // Matches the CSS transition duration
+            }, 500); 
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
+    document.getElementById('registerForm2').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name2').value;
+        const height = document.getElementById('height2').value;
+        const weight = document.getElementById('weight2').value;
+        const goal = document.getElementById('goal2').value;
+
+        const userData = {
+            name: name,
+            height: height,
+            weight: weight,
+            goal: goal
+        };
+
+        fetch('/generate-plan2', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            const imageContainer2 = document.getElementById('image-container2');
+            const nutritionImage = document.getElementById('nutritionImage');
+
+            setTimeout(() => {
+            const formattedPlan = data.plan.replace(/\?/g, '').replace(/,/g, '<br>');
+
+                imageContainer2.innerHTML = `
+                    <div id="nutritionResult" class="visible">
+                        <h3>Your Personalized Plan:</h3>
+                        ${formattedPlan}
+                    </div>
+                `;
+            }, 500);
         })
         .catch(error => {
             console.error('Error:', error);
