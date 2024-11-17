@@ -252,6 +252,7 @@ section {
 #image-container img{
     width: 500px;
     height: 450px;
+    transition: opacity 0.5s ease;
 }
 
 /* Result styling */
@@ -260,6 +261,60 @@ section {
     color: #fff;
 }
 
+#fitnessResult {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 500px;
+    height: 450px;
+    border: 2px solid #01dbc2;
+    padding: 20px;
+    border-radius: 0px 25px 25px 0px;
+    background-color: #333;
+    background-image: linear-gradient(
+        rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(fitness_image2.jpg);
+    background-size: cover;
+    background-position: center;
+
+}
+
+#image-container img.hidden {
+    opacity: 0;
+}
+#fitnessResult.visible {
+    opacity: 1;
+}
+
+#fitnessResult h3 {
+    color: #01dbc2; 
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+#fitnessResult p {
+    color: #fff;
+    white-space: pre-wrap; 
+    text-align: left; /* Aligns text to the left */
+    margin: 5px 0; 
+}
+
+strong{
+    color: #fff;
+}
+em{
+    color: #fff;
+}
+
+#fitnessResult pre {
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0; /* Adds spacing for readability */
+    text-align: left; /* Ensures exercises align left */
+}
 
 #nutrition-plan{
     width: 100%;
@@ -276,6 +331,7 @@ section {
 
 #nutrition-plan p{
     color: #fff;
+    text-align: left;
 }
 
 #payment {

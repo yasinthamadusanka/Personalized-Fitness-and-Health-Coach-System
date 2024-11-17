@@ -51,7 +51,6 @@
                 <div id="image-container">
                     <img src="images/fitness-image.jpg" alt="Placeholder Image" id="fitnessImage" />
                 </div>
-                <div id="result"></div>
             </div>
     </section>
 
@@ -287,37 +286,52 @@
         });
 
         document.getElementById('registerForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const height = document.getElementById('height').value;
-    const weight = document.getElementById('weight').value;
-    const goal = document.getElementById('goal').value;
+        const name = document.getElementById('name').value;
+        const height = document.getElementById('height').value;
+        const weight = document.getElementById('weight').value;
+        const goal = document.getElementById('goal').value;
 
-    const userData = {
-        name: name,
-        height: height,
-        weight: weight,
-        goal: goal
-    };
+        const userData = {
+            name: name,
+            height: height,
+            weight: weight,
+            goal: goal
+        };
 
-    fetch('/generate-plan', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('result').innerHTML = `
-            <h3>Your Personalized Plan:</h3>
-            <p>${data.plan}</p>
-        `;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        fetch('/generate-plan', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Select the image container and the image
+            const imageContainer = document.getElementById('image-container');
+            const fitnessImage = document.getElementById('fitnessImage');
+
+            // Add fade-out effect to the image
+            fitnessImage.classList.add('hidden');
+
+            // Replace the image with the result after the transition
+            setTimeout(() => {
+                // Replace `?` and add new lines
+            const formattedPlan = data.plan.replace(/\?/g, '').replace(/,/g, '<br>');
+
+                imageContainer.innerHTML = `
+                    <div id="fitnessResult" class="visible">
+                        <h3>Your Personalized Plan:</h3>
+                        ${formattedPlan}
+                    </div>
+                `;
+            }, 500); // Matches the CSS transition duration
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
 </script>
 </html>

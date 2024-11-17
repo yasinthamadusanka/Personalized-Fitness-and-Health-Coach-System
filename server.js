@@ -45,33 +45,61 @@ app.get('/logout', (req, res) => {
     });
 });
 
-// API endpoint to handle form data and generate the plan
 app.post('/generate-plan', (req, res) => {
     const { name, height, weight, goal } = req.body;
 
-    // Calculate BMI (Body Mass Index) to assist with plan generation
+    // Calculate BMI (Body Mass Index)
     const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
 
-    let plan = '';
+    // Fetch a random plan from the database
+    const query = 'SELECT * FROM fitness_plans ORDER BY RAND() LIMIT 1';
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error fetching plan:', err);
+            return res.status(500).json({ error: 'Failed to fetch fitness plan' });
+        }
 
-    // Generate plan based on health goal and BMI
-    if (goal === 'lose') {
-        plan = `To lose weight, we recommend a high-protein, low-carb diet, and regular cardio exercises. Your BMI is ${bmi}.`;
-    } else if (goal === 'gain') {
-        plan = `To gain muscle, focus on a balanced diet with a slight calorie surplus, combined with strength training exercises. Your BMI is ${bmi}.`;
-    } else {
-        plan = `To maintain your weight, follow a balanced diet and exercise routine to stay fit. Your BMI is ${bmi}.`;
-    }
+        if (result.length > 0) {
+            const randomPlan = result[0];
 
-    // Optionally, store user data in MySQL for future reference
-    const query = 'INSERT INTO user (name, height, weight, goal, bmi) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [name, height, weight, goal, bmi], (err, result) => {
-        if (err) throw err;
-        console.log('User data inserted:', result);
+            // Optionally, store user data in the database
+            const userQuery = 'INSERT INTO user (name, height, weight, goal, bmi) VALUES (?, ?, ?, ?, ?)';
+            db.query(userQuery, [name, height, weight, goal, bmi], (err, insertResult) => {
+                if (err) {
+                    console.error('Error storing user data:', err);
+                }
+            });
+
+            // Format exercises for better alignment
+            const exercisesArray = randomPlan.exercises.split(',').map((exercise) => exercise.trim());
+            const cleanedExercises = exercisesArray
+                .map((exercise, index) => {
+                    // Handle cases where the exercise doesn't have a colon
+                    const [name, duration] = exercise.includes(':')
+                        ? exercise.split(':').map((str) => str.trim())
+                        : [exercise, '']; // Default to empty duration if not found
+                    return `${index + 1}. ${name}${duration ? ' ' + duration : ''}`;
+                })
+                .join('\n');
+
+            // Send the random fitness plan as the response
+            res.json({
+                plan: `
+                    <p><strong>Name:</strong> ${randomPlan.plan_name}</p>
+                    <p><strong>Goal:</strong> ${randomPlan.goal}</p>
+                    <p><strong>Frequency:</strong> ${randomPlan.frequency}</p>
+                    <p><strong>Exercises:</strong></p>
+                    <pre>${cleanedExercises}</pre>
+                    <p><strong>Your BMI:</strong> ${bmi}</p>
+                    <p><strong>Note:</strong> This plan aligns with your health goal: <em>${goal}</em>.</p>
+                `,
+            });
+        } else {
+            res.json({ plan: 'No fitness plans available at the moment. Please try again later.' });
+        }
     });
-
-    res.json({ plan });
 });
+
 
 // Route to handle form submission
 app.post('/submit-form', (req, res) => {
