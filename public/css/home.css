@@ -52,6 +52,54 @@ body {
     text-transform: uppercase;
 }
 
+.toggle-btn ion-icon {
+    color: white;
+    font-size: 2rem; 
+    transition: color 0.3s ease; 
+    display: none;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.dropdown-menu{
+    position: absolute;
+    right: 4rem;
+    top: 100px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    height: 0;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown-menu.open{
+    height: 350px;
+}
+
+.dropdown-menu li{
+    list-style: none;
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-menu #logoutButton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
 #logoutButton {
     border: 1px solid #a24646;
     color: #fff;
@@ -171,7 +219,21 @@ section {
     text-align: center;
 }
 
+#nutrition-plan{
+    width: 100%;
+    height: 100vh;
+    background-color: #333;
+    text-align: center;
+}
+
 #fitness-plan h2{
+    color: #fff;
+    padding-top: 40px;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#nutrition-plan h2{
     color: #fff;
     padding-top: 40px;
     font-size: 2.5em;
@@ -181,6 +243,16 @@ section {
 #fitness-plan p{
     font-size: 1.2rem;
     color: #666;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+#nutrition-plan p{
+    font-size: 1.2rem;
+    color: #777;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -336,29 +408,7 @@ em{
     text-align: left; /* Ensures exercises align left */
 }
 
-#nutrition-plan{
-    width: 100%;
-    height: 100vh;
-    background-color: #333;
-    text-align: center;
-}
 
-#nutrition-plan h2{
-    color: #fff;
-    padding-top: 40px;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-#nutrition-plan p{
-    font-size: 1.2rem;
-    color: #777;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    line-height: 1.6;
-}
 
 #team {
     padding: 50px 20px;
@@ -802,8 +852,13 @@ em{
 }
 
 @media(max-width:991px){
+    .banner{
+        height: 120vh;
+    }
     #contact-us{
-        padding: 50px;
+        padding-left: 50px;
+        padding-right: 50px;
+        height: 175vh;
     }
     .container{
         flex-direction: column;
@@ -813,7 +868,8 @@ em{
         width: 100%;
     }
     .container .contactForm{
-        padding: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
     .container .contactForm form{
         padding: 10px;
@@ -821,6 +877,258 @@ em{
     footer{
         width: 100%;
     }
+    .navbar ul li{
+        display: none;
+    }
+    .toggle-btn ion-icon {
+        display: block;
+    }
+    .dropdown-menu{
+        display: block;
+    }
+    .content {
+        width: 100%;
+        position: absolute;
+        top: 80%;
+        transform: translateY(-50%);
+        color: white;
+        text-align: center;
+        padding: 50px;
+    }
+    #fitness-plan p{
+        margin-bottom: 50px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    #nutrition-plan p{
+        margin-bottom: 50px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    #fitness-plan{
+        height: 165vh;
+        text-align: center;
+    }
+    #nutrition-plan{
+        height: 170vh;
+        text-align: center;
+    }
+    #registerForm, #registerForm2 {
+        border-right: 2px solid #01dbc2;
+        border-bottom: none;
+        border-radius: 25px 25px 0px 0px;
+    }
+    #fitness-plan .home {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        margin: 0;
+        margin-left: 125px;
+        margin-top: 10px;
+    }
+    #nutrition-plan .home2 {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        margin: 0;
+        margin-left: 140px;
+        margin-top: 10px;
+    }
+
+    #registerForm, #image-container{
+        max-width: 90%;
+        margin-right: 500px;
+        margin: 0;
+    }
+    #registerForm2, #image-container2{
+        max-width: 90%;
+        margin-right: 500px;
+        margin: 0;
+    }
+
+    #fitnessResult,#nutritionResult {
+        border-radius: 0px 0px 25px 25px;
+        
+    }
+
+    #fitnessResult p, #nutritionResult p {
+        font-size: 14px;
+    }
+
+    #fitnessResult pre, #nutritionResult pre {
+        font-size: 12px;
+    }
+
+    #team{
+        height: 140vh;
+        flex-direction: column;
+    }
+
+    #payment{
+        height: 185vh;
+    }
+
+    #payment h1{
+        padding-bottom: 10px;
+    }
+
+    #contact-us h2{
+        padding-bottom: 10px;
+    }
+
+}
+
+@media(max-width:576px){
+    .dropdown-menu{
+        width: unset;
+        left: 2rem;
+    }
+
+    .dropdown-menu.open{
+        height: 280px;
+    }
+    #fitness-plan p, #nutrition-plan p{
+        margin-bottom: 50px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .banner {
+        height: 110vh;
+    }
+
+    #fitness-plan{
+        height: 175vh;
+        text-align: center;
+    }
+    #nutrition-plan{
+        height: 180vh;
+        text-align: center;
+    }
+    #registerForm, #registerForm2 {
+        border-right: 2px solid #01dbc2;
+        border-bottom: none;
+        border-radius: 25px 25px 0px 0px;
+    }
+    #fitness-plan .home {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        margin: 0;
+        margin-left: 35px;
+        margin-top: 10px;
+    }
+    #nutrition-plan .home2 {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        margin: 0;
+        margin-left: 35px;
+        margin-top: 10px;
+    }
+
+    #registerForm, #image-container{
+        max-width: 90%;
+        margin-right: 500px;
+        margin: 0;
+    }
+
+    #registerForm h4, #registerForm2 h4{
+        text-align: center;
+        padding-left: 4px;
+    }
+
+    #image-container img, #image-container2 img{
+        width: 403px;
+    }
+
+
+    #registerForm2, #image-container2{
+        max-width: 90%;
+        margin-right: 500px;
+        margin: 0;
+    }
+
+    #fitnessResult,#nutritionResult {
+        border-radius: 0px 0px 25px 25px;
+        
+    }
+
+    #fitnessResult p, #nutritionResult p {
+        font-size: 10px;
+    }
+
+    #fitnessResult pre, #nutritionResult pre {
+        font-size: 8px;
+    }
+
+    #registerForm button{
+        margin-left: 55px;
+        width: 150px;
+    }
+
+    #registerForm2 button{
+        margin-left: 55px;
+        width: 150px;
+    }
+
+    #team{
+        height: 240vh;
+        flex-direction: column;
+    }
+
+    .team-container{
+        margin-top: 0;
+    }
+
+    #payment{
+        height: 260vh;
+    }
+
+    #payment h1{
+        padding-bottom: 10px;
+    }
+
+    #contact-us {
+        height: 200vh; 
+        margin-left: 0;
+    }
+
+    .contact-content h2, .contact-content p{
+        text-align: center;
+        margin-right: 260px;
+    }
+
+    #contact-us .container .contactInfo .box {
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
+        margin-top: 20px; 
+        margin-right: 280px;
+    }
+
+    .contactInfo p{
+        font-size: 16px;
+        padding-top: 5px;
+    }
+
+    .box .icon{
+        margin-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    
+
+    
+
+    .contact-content h2{
+        padding-bottom: 10px;
+    }
+
+    .contactForm {
+        margin-right: 280px; /* Centers the form horizontally */
+        margin-left: 30px;  /* Centers the form horizontally */
+        width: 80%;         /* Adjust the width percentage */
+        max-width: 400px;   /* Limits the form width on larger screens */
+        padding: 20px;      /* Adds some padding for better spacing */
+        box-sizing: border-box; /* Ensures padding doesn’t affect width */
+    }
+
+
 }
 
 footer{

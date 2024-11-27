@@ -20,6 +20,19 @@
                 <li><a href="#" id="registerLink">Register</a></li>
                 <li><button id="logoutButton">Logout</button></li>
             </ul>
+            <div class="toggle-btn">
+                <ion-icon name="menu"></ion-icon>
+            </div>
+        </div>
+        <div class="dropdown-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#fitness-plan">Fitness Plan</a></li>
+            <li><a href="#nutrition-plan">Nutrition Plan</a></li>
+            <li><a href="#payment">Payment</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+            <li><a href="#" id="loginLink">Login</a></li>
+            <li><a href="#" id="registerLink">Register</a></li>
+            <li><button id="logoutButton">Logout</button></li>
         </div>
         <div class="content">
             <h1>Welcome to Your Personalized Fitness Journey</h1>
@@ -250,6 +263,17 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 <script>
+    const toggleBtn = document.querySelector('.toggle-btn')
+    const toggleBtnIcon = document.querySelector('.toggle-btn ion-icon')
+    const dropDownMenu = document.querySelector('.dropdown-menu')
+
+    toggleBtn.onclick = function() {
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+
+        toggleBtnIcon.name = isOpen ? 'close' : 'menu'
+    }
+
     const planPrices = {
         basic: 10,
         premium: 25,
